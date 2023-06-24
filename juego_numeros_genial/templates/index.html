@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Great Number Game</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
+
+</head>
+<body>
+  <div class="px-4 py-5 my-5 text-center">
+      <h1>Welcome to the Great Number Game</h1>
+      <p>I am thinking of a number between 1 and 100</p>
+      <p>Take a guess!</p>
+      
+      {% if mensaje %}
+      <div class="text-center mt-4">
+        <div class="alert alert-info d-inline-block">{{ mensaje }}
+          {% if mostrar_input_nombre %}
+            <form method="POST" action="/guardar_nombre" class="mt-4">
+                <input type="hidden" name="intentos" value="{{ intentos }}">
+                <div class="mb-3 text-center">
+                    <label for="nombre" class="form-label">Ingresa tu nombre:</label>
+                    <input type="text" class="form-control" id="nombre" name="nombre" required>
+                </div>
+                <div class="text-center">
+                    <button type="submit" class="btn btn-primary">Guardar nombre</button>
+                </div>
+            </form>
+          {% endif %}
+      
+          {% if mostrar_juego_nuevo %}
+            <form method="GET" action="/">
+                <input type="submit" value="Jugar de nuevo" class="btn btn-primary mt-3">
+            </form>
+          {% endif %}
+        </div>
+      </div>
+      {% endif %}
+      <form method="POST" action="/">
+         
+          <input type="number" name="numero" autofocus required>
+          <input type="submit" value="Adivinar">
+      </form>
+    </div>
+</body>
+</html>
